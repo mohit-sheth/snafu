@@ -45,10 +45,10 @@ def main():
     runtime = os.environ["runtime"]
     requests_per_second = os.environ["requests_per_second"]
     latency_95pctl = os.environ["latency_95pctl"]
+    uuid = os.environ["uuid"] 
     timestamp_newyork = datetime.datetime.now()
-    uuid = ''.join(random.choices(string.ascii_lowercase + string.digits, k = 37)) 
-
-    documents = _json_payload(uuid, test_type, test_name, routes, conn_per_targetroute, keepalive, tls_reuse, delay, runtime, requests_per_second, latency_95pctl, timestamp_newyork)
+    
+documents = _json_payload(uuid, test_type, test_name, routes, conn_per_targetroute, keepalive, tls_reuse, delay, runtime, requests_per_second, latency_95pctl, timestamp_newyork)
     print(documents)
     if len(documents) > 0:
         _index_result("router-test-results", server, port, documents)
